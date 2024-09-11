@@ -31,9 +31,7 @@ Berikut adalah beberapa langkah yang saya lakukan untuk menyelesaikan checklist 
 
 ## Bagan Request-Response Django
 
-Berikut adalah bagan dari alur request client ke web aplikasi:
-
-![Django Flow Diagram](images/diagram.jpg)
+Berikut adalah link bagan dari alur request client ke web aplikasi ristek.link/DjangoFLowDiagram 
 
 - **urls.py**: Bertugas untuk menerima request dari client dan memetakan request tersebut ke fungsi yang sesuai di `views.py`. Setiap path di URL ditangani oleh handler tertentu di views.
 
