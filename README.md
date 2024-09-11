@@ -32,7 +32,7 @@ Berikut adalah beberapa langkah yang saya lakukan untuk menyelesaikan checklist 
 ## Bagan Request-Response Django
 
 Berikut adalah bagan dari alur request client ke web aplikasi :
-![Flow Diagram](diagram.jpeg)
+![Flow Diagram](diagram\diagram.jpg)
 
 - **urls.py**: Bertugas untuk menerima request dari client dan memetakan request tersebut ke fungsi yang sesuai di `views.py`. Setiap path di URL ditangani oleh handler tertentu di views.
 
