@@ -1,22 +1,32 @@
+# Corée Élégante - Korean Fashion Clothing
+
+Ini adalah repository untuk **Corée Élégante**, sebuah aplikasi e-commerce yang dikembangkan untuk **Tugas 2: Pemrograman Berbasis Platform**.
+
+## Deskripsi Proyek
+Aplikasi **Corée Élégante** adalah platform e-commerce yang menjual berbagai macam pakaian bergaya Korea yang lucu dan trendi. Pengguna dapat menjelajahi koleksi fashion, melihat detail produk seperti:
+- **Nama Produk**
+- **Harga**
+- **Deskripsi**
+
 ## Implementasi demi langkah
 Berikut adalah beberapa langkah yang saya lakukan untuk menyelesaikan checklist tugas 2 ini :
-** 1. Mendaftar di GitHub
+1. Mendaftar di GitHub
 Membuat akun, memverifikasi email, dan menyesuaikan profil untuk proyek dan kolaborasi.
 
-** 2. Mengonfigurasi Git
+2. Mengonfigurasi Git
 - Menginstal Git, mengatur nama pengguna dan email dengan git config, lalu membuat SSH key untuk autentikasi otomatis tanpa password.
 
-** 3. Membuat Repositori
+3. Membuat Repositori
 - Inisiasi repositori lokal dengan git init, membuat repositori di GitHub, dan menghubungkannya dengan git remote add origin <URL_REPO>.
 
-** 4. Instalasi Virtual Environment
+4. Instalasi Virtual Environment
 - Membuat virtual environment dengan python -m venv env, mengaktifkannya, dan menginstal Django menggunakan pip install django.
 
-** 5. Inisiasi Proyek Django
+5. Inisiasi Proyek Django
 - Menjalankan django-admin startproject <project_name>, membuat aplikasi dengan startapp, dan mengonfigurasi URL serta settings yang diperlukan.
 Mengonfigurasi Arsitektur MVT
 
-**6. Mengonfigurasi URL routing dengan membuat urls.py di aplikasi dan menambahkannya ke urls.py proyek menggunakan include().
+6. Mengonfigurasi URL routing dengan membuat urls.py di aplikasi dan menambahkannya ke urls.py proyek menggunakan include().
 - Membuat template HTML di direktori templates aplikasi.
 - Menggunakan fungsi render() di view untuk menampilkan data dari model.
 - Mendefinisikan model di models.py, lalu menjalankan makemigrations dan migrate untuk menyinkronkan model dengan basis data.
