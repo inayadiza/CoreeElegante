@@ -1,8 +1,35 @@
-<h1>Corée Élégante</h1>
+{% extends 'base.html' %}
 
-<h5>Name: </h5>
-<p>Brown Cardigan</p> <!-- Ubah sesuai dengan npm kamu -->
-<h5>Price: </h5>
-<p>Rp. 180.000</p> <!-- Ubah sesuai dengan nama kamu -->
-<h5>Description: </h5>
-<p>A brown cardigan is a cozy, versatile layering piece, made from soft materials like wool or cotton. </p> <!-- Ubah sesuai dengan kelas kamu -->
+{% block content %}
+<h1>Corée Élégante - Clothing Collection</h1>
+
+{% if not clothing_entries %}
+  <p>Belum ada data item baju pada Corée Élégante.</p>
+{% else %}
+  <table>
+    <thead>
+      <tr>
+        <th>Nama Item</th>
+        <th>Harga</th>
+        <th>Deskripsi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for clothing_entry in clothing_entries %}
+        <tr>
+          <td>{{ clothing_entry.nama_item }}</td>
+          <td>{{ clothing_entry.harga }}</td>
+          <td>{{ clothing_entry.deskripsi }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:create_clothing_entry' %}">
+  <button>Add New Clothing Item</button>
+</a>
+
+{% endblock content %}
