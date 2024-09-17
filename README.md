@@ -83,7 +83,7 @@ Method `is_valid()` berfungsi untuk memvalidasi input dari form sebelum data dis
 
 4. **Mengembalikan Data dalam Format XML dan JSON:**
    - Di sini membuat dua fungsi, `show_xml` dan `show_json`, di `views.py`. 
-   Keduanya bertanggung jawab untuk mengubah data ke format XML atau JSON. Setelah itu, aku tambahkan URL routing di `urls.py` supaya bisa diakses di browser atau API.
+   Keduanya bertanggung jawab untuk mengubah data ke format XML atau JSON. Setelah itu, menambahkan URL routing di `urls.py` supaya bisa diakses di browser atau API.
 
 5. **Testing dengan Postman:**
    - Setelah server Django berjalan, membuka Postman dan coba kirim request GET ke endpoint `xml/` atau `json/` untuk melihat apakah data muncul dengan format yang benar. 
