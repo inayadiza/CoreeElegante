@@ -86,3 +86,7 @@ Untuk mengimplementasikan poin-poin di atas, berikut langkah-langkah secara gari
 7. **Testing dan Debugging**: Uji aplikasi untuk memastikan pengiriman data berjalan dengan baik, validasi form sesuai, dan perlindungan CSRF bekerja.
 
 ## Screenshoot Postman
+![Postman JSON](screenshoot/Screenshot%202024-09-17%20224213.png)
+![Postman JSON ID](screenshoot/Screenshot%202024-09-17%20224755.png)
+![Postman XML](screenshoot/Screenshot%202024-09-17%20224148.png)
+![Postman XML ID](screenshoot/Screenshot%202024-09-17%20224721.png)
