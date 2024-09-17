@@ -54,36 +54,40 @@ Model di Django disebut ORM (Object-Relational Mapping) karena memungkinkan peng
 
 # TUGAS 3
 
-### 1. Mengapa pengiriman data penting dalam pengimplementasian sebuah platform?
-Pengiriman data sangat penting dalam pengembangan platform karena memungkinkan pertukaran informasi antara klien (front-end) dan server (back-end). Berikut adalah beberapa alasan-alasan pengiriman data menjadi krusial antara lain:
-- **Pertukaran Informasi**: Platform memerlukan pengiriman dan penerimaan data secara real-time, seperti pengambilan informasi pengguna atau pengiriman data transaksi. 
-- **Sinkronisasi Sistem**: Platform membutuhkan data yang ter-update dari server untuk memberikan informasi yang relevan kepada pengguna.
-- **Efisiensi dan Skalabilitas**: Sistem pengiriman data yang baik memastikan efisiensi dalam memproses dan mengelola data secara terstruktur, sehingga mendukung pertumbuhan platform di masa depan.
+### 1. Mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Data delivery itu penting banget dalam platform karena memungkinkan kita mengirimkan data dari satu bagian sistem ke bagian lainnya, misalnya dari client ke server. Dengan ini memungkinkan aplikasi kita untuk dinamis dan interaktif, di mana data bisa dikirim, disimpan, dan diambil sesuai kebutuhan.
 
 ### 2. Mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
-Dibandingkan dengan XML, JSON dianggap lebih unggul dalam hal kecepatan pemrosesan dan kemudahan penggunaan. Salah satu alasan utama mengapa JSON lebih populer adalah karena sintaksnya yang lebih sederhana dan ringan, sehingga mudah dibaca baik oleh manusia maupun mesin. Hal ini berbeda dengan XML yang cenderung lebih verbose dan kompleks. Selain itu, JSON memiliki kinerja yang lebih baik, terutama dalam hal parsing data, karena JSON didukung secara native oleh banyak bahasa pemrograman modern, membuatnya lebih efisien. JSON juga mendapat dukungan luas dalam pengembangan aplikasi web dan API modern, di mana format ini telah menjadi standar utama untuk pertukaran data antara server dan klien. Kombinasi dari kemudahan penggunaan, performa yang lebih cepat, serta dukungan yang luas menjadikan JSON pilihan yang lebih disukai dibandingkan XML dalam banyak aplikasi pengembangan web.
+JSON lebih sering digunakan daripada XML karena lebih ringan dan lebih mudah dibaca. Sintaks JSON lebih sederhana dan tidak bertele-tele seperti XML yang memerlukan banyak tag pembuka dan penutup. Oleh karena itu, JSON lebih cepat dan lebih efisien, terutama dalam aplikasi web modern.
 
-### 3. Jelaskan fungsi dari method `is_valid()` pada form Django dan mengapa kita membutuhkannya?
-Method `is_valid()` pada form Django digunakan untuk memvalidasi data yang dimasukkan pengguna ke dalam form. Fungsi ini sangat penting karena:
-- **Validasi Data**: Memastikan bahwa data yang dimasukkan sesuai dengan aturan yang telah ditetapkan.
-- **Keamanan**: Mencegah input yang tidak valid atau berbahaya dari disimpan di database atau diproses lebih lanjut, sehingga membantu menghindari serangan seperti SQL Injection.
-- **Feedback**: Jika data tidak valid, Django akan mengembalikan pesan kesalahan yang dapat ditampilkan kepada pengguna untuk memperbaiki input mereka.
+### 3. Jelaskan fungsi dari method `is_valid()` pada form Django dan mengapa kita membutuhkan method tersebut?
+Method `is_valid()` berfungsi untuk memvalidasi input dari form sebelum data disimpan. Kita butuh method ini untuk memastikan bahwa data yang diinput oleh pengguna sesuai dengan aturan yang sudah ditentukan di model. Kalau tidak valid, Django akan mengembalikan error, sehingga kita bisa menangani kesalahan sebelum data disimpan.
 
 ### 4. Mengapa kita membutuhkan `csrf_token` saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan `csrf_token` pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
-`csrf_token` digunakan di Django untuk mencegah **CSRF (Cross-Site Request Forgery)**, yaitu serangan di mana penyerang dapat memanipulasi pengguna agar mengirimkan permintaan tidak sah kepada aplikasi web tanpa sepengetahuan mereka. Jika form tidak menggunakan `csrf_token`, aplikasi menjadi rentan terhadap:
-- **Manipulasi Data**: Penyerang dapat memaksa pengguna yang sudah login untuk mengirimkan form ke server, seperti mengubah data pengguna atau melakukan transaksi tanpa izin.
-- **Serangan Keamanan**: Tanpa perlindungan CSRF, data sensitif seperti informasi keuangan atau akun pengguna dapat dieksploitasi.
+`csrf_token` sangat penting untuk melindungi aplikasi dari serangan CSRF (Cross-Site Request Forgery). Tanpa `csrf_token`, form kita rentan terhadap serangan di mana penyerang bisa membuat request yang tidak sah dari luar aplikasi. Jika tidak ditambahkan, aplikasi bisa dieksploitasi dengan mengirimkan request berbahaya seolah-olah berasal dari pengguna sah.
 
-### 5. Bagaimana cara mengimplementasikan semua langkah-langkah di atas secara step-by-step?
-Untuk mengimplementasikan poin-poin di atas, berikut langkah-langkah secara garis besar:
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step?
 
-1. **Instalasi Django**: Buat environment virtual dan instal Django menggunakan `pip install django`.
-2. **Buat Aplikasi Django**: Inisialisasi proyek Django dengan perintah `django-admin startproject [nama_proyek]`, lalu buat aplikasi dengan `python manage.py startapp [nama_aplikasi]`.
-3. **Konfigurasi Pengiriman Data**: Implementasikan API atau views yang dapat menerima dan mengirimkan data dalam format JSON, misalnya menggunakan Django Rest Framework.
-4. **Gunakan JSON untuk Pengiriman Data**: Konversi data yang dikirim dari server ke klien menggunakan format JSON.
-5. **Penggunaan Forms dengan Validasi**: Buat form Django yang menggunakan method `is_valid()` untuk memvalidasi input dari pengguna.
-6. **Implementasi CSRF Protection**: Tambahkan `{% csrf_token %}` di setiap form yang membutuhkan post request untuk melindungi dari serangan CSRF.
-7. **Testing dan Debugging**: Uji aplikasi untuk memastikan pengiriman data berjalan dengan baik, validasi form sesuai, dan perlindungan CSRF bekerja.
+1. **Membangun Kerangka Views (Skeleton):**
+   - Pertama, membuat folder `templates` dan file `base.html`
+   File ini berfungsi sebagai kerangka dasar yang akan di-extend oleh halaman lain. Dengan menggunakan kerangka ini, desain web bisa lebih konsisten dan kode jadi lebih rapi.
+   - Dalam `base.html`, menambahkan tag `{% block %}` untuk membuat area yang nanti bisa diisi atau diubah oleh halaman lain.
+
+2. **Mengganti Primary Key dari Integer ke UUID:**
+   - Impor `uuid` di `models.py` dan mengganti field `id` di model `MoodEntry` dengan `UUIDField`. 
+   Hal ini supaya setiap data mood punya ID unik yang lebih aman dan tidak bisa ditebak seperti ID integer.
+
+3. **Membuat Form untuk Input Data Mood:**
+   - Membuat file `forms.py` yang mendefinisikan form untuk input data
+   - Kemudian, di `views.py`, membuat fungsi `create_clothing_entry` untuk menampilkan form dan menyimpan data yang di-submit oleh user ke database serta menambahkan `{% csrf_token %}` di template HTML untuk mengamankan form dari serangan.
+
+4. **Mengembalikan Data dalam Format XML dan JSON:**
+   - Di sini membuat dua fungsi, `show_xml` dan `show_json`, di `views.py`. 
+   Keduanya bertanggung jawab untuk mengubah data ke format XML atau JSON. Setelah itu, aku tambahkan URL routing di `urls.py` supaya bisa diakses di browser atau API.
+
+5. **Testing dengan Postman:**
+   - Setelah server Django berjalan, membuka Postman dan coba kirim request GET ke endpoint `xml/` atau `json/` untuk melihat apakah data muncul dengan format yang benar. 
+   Hal ini membantu memvalidasi bahwa data sudah dikirim dan diterima dengan baik oleh API.
 
 ## Screenshoot Postman
 ![Postman JSON](screenshoot/Screenshot%202024-09-17%20224213.png)
