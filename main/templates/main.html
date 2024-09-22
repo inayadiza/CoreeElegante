@@ -2,7 +2,14 @@
 
 {% block content %}
 <h1>Corée Élégante - Clothing Collection</h1>
+<h5>NPM: </h5>
+<p>{{ npm }}<p>
 
+<h5>Name:</h5>
+<p>{{ name }}</p>
+
+<h5>Class:</h5>
+<p>{{ class }}</p>
 {% if not clothing_entries %}
   <p>Belum ada data item baju pada Corée Élégante.</p>
 {% else %}
@@ -30,6 +37,9 @@
 
 <a href="{% url 'main:create_clothing_entry' %}">
   <button>Add New Clothing Item</button>
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+  <h5>Sesi terakhir login: {{ last_login }}</h5>
 </a>
 
 {% endblock content %}
