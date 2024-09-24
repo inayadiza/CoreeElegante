@@ -94,3 +94,51 @@ Method `is_valid()` berfungsi untuk memvalidasi input dari form sebelum data dis
 ![Postman JSON ID](screenshoot/Screenshot%202024-09-17%20224755.png)
 ![Postman XML](screenshoot/Screenshot%202024-09-17%20224148.png)
 ![Postman XML ID](screenshoot/Screenshot%202024-09-17%20224721.png)
+
+# TUGAS 4
+### 1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+- HttpResponseRedirect() adalah kelas respons langsung dari Django yang digunakan untuk membuat respons HTTP dengan status 302 (Found), yang berarti sumber daya telah dipindahkan sementara ke URL lain. Penggunaannya jauh lebih eksplisit, dan harus memberikan URL tujuan sebagai argumen.
+- redirect() adalah fungsi utilitas yang lebih tinggi tingkatannya yang juga mengembalikan respons pengalihan, tetapi dengan tambahan kemudahan dan fleksibilitas. Fungsi redirect() ini dapat menerima URL langsung, nama tampilan, atau ID objek, dan secara otomatis akan membangun URL yang sesuai.
+
+### 2. Jelaskan cara kerja penghubungan model Product dengan User!
+Penghubungan model Product dengan User dilakukan melalui relasi ForeignKey, di mana setiap Product terhubung dengan satu User yang berarti satu pengguna dapat memiliki banyak Product, yang dikenal sebagai relasi one-to-many. Pada model Product, atribut ForeignKey digunakan untuk merujuk ke model User. Pengaturan ini memungkinkan setiap Product terkait langsung dengan satu pengguna. Jika pengguna dihapus, semua Product yang dimilikinya juga akan dihapus secara otomatis karena pengaturan on_delete=models.CASCADE, yang memastikan integritas data tetap terjaga.
+
+### Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+
+## Perbedaan antara Authentication dan Authorization
+### 1. Authentication
+Authentication adalah proses memverifikasi identitas pengguna untuk memastikan bahwa pengguna adalah orang yang mereka klaim. Ini biasanya dilakukan dengan memasukkan username dan password. Contohnya, ketika pengguna memasukkan username dan password untuk masuk ke dalam aplikasi. Hasilnya, jika username dan password benar, pengguna dianggap terotentikasi dan diizinkan mengakses aplikasi.
+
+### 2. Authorization (Otorisasi)
+Authorization adalah proses menentukan apakah pengguna yang telah terotentikasi memiliki izin atau hak akses untuk melakukan tindakan tertentu atau mengakses sumber daya tertentu. Contohnya, setelah login, seorang pengguna mungkin bisa melihat beberapa halaman, tetapi tidak dapat mengakses halaman admin atau mengubah data kecuali memiliki hak akses yang tepat. Authorization menentukan apa saja yang dapat dilakukan oleh pengguna yang telah terotentikasi di dalam aplikasi, berdasarkan peran dan izin mereka.
+
+## Apa yang Terjadi Saat Pengguna Login?
+Ketika pengguna login, beberapa langkah terjadi:
+1. **Proses Authentication**: Sistem memeriksa apakah username dan password yang dimasukkan cocok dengan data yang ada di database.
+2. **Pembuatan Sesi**: Jika kredensial benar, Django membuat sesi untuk pengguna sehingga mereka tetap login selama sesi berlangsung.
+3. **Proses Authorization**: Setelah pengguna terotentikasi, sistem akan memeriksa hak akses pengguna untuk memastikan mereka hanya bisa melakukan tindakan sesuai dengan izin yang diberikan.
+
+## Implementasi Authentication dan Authorization di Django
+### Authentication di Django
+Django memiliki sistem otentikasi bawaan yang memungkinkan verifikasi identitas pengguna. Beberapa fitur utama:
+- **Model User**: Django menggunakan model `User` yang disediakan oleh modul `django.contrib.auth` untuk mengelola data pengguna seperti username, password, email, dan izin.
+- **Fungsi Authentication**:
+  - `authenticate()`: Memeriksa kredensial pengguna.
+  - `login()`: Memulai sesi untuk pengguna yang berhasil terotentikasi.
+  - `logout()`: Mengakhiri sesi pengguna yang login.
+
+### Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+Django mengingat pengguna yang telah login dengan memanfaatkan session, yang diidentifikasi oleh session ID yang disimpan di cookie pada browser pengguna. Setiap kali pengguna mengunjungi aplikasi, browser akan mengirimkan cookie yang berisi session ID tersebut ke server. Berdasarkan session ID ini, server dapat mengenali pengguna dan menjaga status login mereka.
+
+**Cookies juga memiliki kegunaan lain, seperti**:
+- Menyimpan preferensi pengguna, seperti pengaturan bahasa atau item yang baru saja dilihat.
+- Melacak aktivitas pengguna di situs web, misalnya untuk tujuan analitik atau personalisasi.
+
+Namun, tidak semua cookies aman. Cookies dapat menjadi sasaran serangan seperti cross-site scripting (XSS). Django memiliki pengaturan keamanan seperti `HttpOnly`, yang mencegah cookie diakses oleh JavaScript, serta `Secure`, yang memastikan cookie hanya dikirimkan melalui koneksi HTTPS, untuk meningkatkan keamanan penggunaan cookies.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+**1. Membuat Fungsi Registrasi, Login, dan Logout**: Saya menggunakan `UserCreationForm` untuk proses registrasi pengguna baru, dan `AuthenticationForm` untuk proses login. Setelah pengguna berhasil login, sistem membuat session yang terkait dengan pengguna tersebut. Saat pengguna logout, session beserta cookie yang terkait akan dihapus.
+**2. Membuat Dummy Data untuk Pengguna**: Saya membuat dua akun pengguna dan menambahkan tiga item skincare dummy untuk setiap pengguna. Setiap item dihubungkan dengan pengguna melalui model `Item`, menggunakan relasi ForeignKey.
+**3.Menghubungkan Model Item dengan User**: Di model `Item`, saya menambahkan atribut `owner` yang merupakan relasi ForeignKey ke model `User`, untuk memastikan setiap item skincare dimiliki oleh pengguna tertentu.
+**4.Menampilkan Username dan Menggunakan Cookie**: Saya menampilkan username pengguna yang sedang login di halaman utama menggunakan `request.user.username`. Saya juga mencatat waktu login terakhir pengguna menggunakan cookie bernama `last_login`, yang akan dihapus saat pengguna melakukan logout.
+**5.Menyimpan dan Push ke GitHub**: Setelah memastikan semua fitur berfungsi dengan baik, saya melakukan commit terhadap perubahan dan mem-push-nya ke GitHub, sesuai dengan checklist yang ada.
