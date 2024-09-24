@@ -15,28 +15,30 @@ from django.core import serializers
 # Create your views here.
 @login_required(login_url='/login')
 def show_main(request):
-    clothing_entries = ClothingEntry.objects.filter  # Fetch all clothing items
+    clothing_entries = ClothingEntry.objects.all()  # Menampilkan semua item pakaian
 
     context = {
-        'npm' : '2306245711',
-        'name' : request.user.username,
-        'class' : 'PBP B',
+        'npm': '2306245711',
+        'name': request.user.username,
+        'class': 'PBP B',
         'Price': 'Rp. 180.000',
         'Description': 'A brown cardigan is a cozy, versatile layering piece, made from soft materials like wool or cotton.',
         'clothing_entries': clothing_entries,  # Pass clothing items to the template
-        'last_login': request.COOKIES['last_login'],
+        'last_login': request.COOKIES.get('last_login', 'Tidak ada informasi login terakhir'),  # Menghindari KeyError
     }
 
     return render(request, "main.html", context)
 
 def create_clothing_entry(request):
-    form = ClothingEntryForm(request.POST or None)
+    form = ClothingEntryForm()
 
-    if form.is_valid() and request.method == "POST":
-        clothing_entry = form.save(commit=False)
-        clothing_entry.user = request.user
-        clothing_entry.save()
-        return redirect('main:show_main')
+    if request.method == "POST":
+        form = ClothingEntryForm(request.POST)
+        if form.is_valid():
+            clothing_entry = form.save(commit=False)
+            clothing_entry.user = request.user
+            clothing_entry.save()
+            return redirect('main:show_main')
 
     context = {'form': form}
     return render(request, "create_clothing_entry.html", context)
