@@ -11,6 +11,9 @@ from main.forms import ClothingEntryForm
 from main.models import ClothingEntry 
 from django.http import HttpResponse
 from django.core import serializers
+from django.shortcuts import reverse
+from django.http import HttpResponseRedirect
+from .models import ClothingEntry
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -91,3 +94,25 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_clothing(request, id):
+    clothing = ClothingEntry.objects.get(pk = id)
+
+    form = ClothingEntryForm(request.POST or None, instance=clothing)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_clothing.html", context)
+
+def delete_clothing(request, id):
+    clothing = ClothingEntry.objects.get(pk = id)
+    clothing.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def show_clothing(request):
+    clothing_entries = ClothingEntry.objects.all()  # Make sure this queryset is correct and contains valid entries
+    context = {'clothing_entries': clothing_entries}
+    return render(request, 'products.html', context)

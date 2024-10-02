@@ -1,45 +1,80 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Clothing Tracker</title>
+{% endblock meta %}
 
 {% block content %}
-<h1>Corée Élégante - Clothing Collection</h1>
-<h5>NPM: </h5>
-<p>{{ npm }}<p>
+{% include 'navbar.html' %}
 
-<h5>Name:</h5>
-<p>{{ name }}</p>
+<!-- Background Black and Dark Theme -->
+<div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-24 min-h-screen bg-black text-white bg-cover bg-center" style="background-image: url('{% static "main.png" %}');">
+  <div class="flex flex-col items-start justify-center min-h-screen">
+    <!-- Welcome, Username, NPM, and Class in a Smaller Box aligned to the left -->
+    <div class="max-w-sm bg-white rounded-xl overflow-hidden border-2 border-gray-200 shadow-md p-4 ml-0">
+        <!-- Welcome Message -->
+        <div class="mb-4">
+            <h5 class="text-lg font-semibold text-gray-800">Welcome, <span class="font-bold">{{ user.username }}</span>!</h5>
+        </div>
+        
+        <!-- NPM Display -->
+        <div class="mb-4">
+            <h5 class="text-lg font-semibold text-gray-800">NPM</h5>
+            <p class="text-gray-800">{{ npm }}</p>
+        </div>
+        
+        <!-- Class Display -->
+        <div>
+            <h5 class="text-lg font-semibold text-gray-800">Class</h5>
+            <p class="text-gray-800">{{ class }}</p>
+        </div>
+    </div>
+  </div>
 
-<h5>Class:</h5>
-<p>{{ class }}</p>
+  <!-- Decorative Bar -->
+  <div class="w-full px-6 absolute top-[44px] left-0 z-20 hidden md:flex">
+    <div class="w-full min-h-4 bg-gray-800"></div>
+  </div>
+  <div class="h-full w-full py-6 absolute top-0 left-0 z-20 md:hidden flex">
+    <div class="h-full min-w-4 bg-gray-800 mx-auto"></div>
+  </div>
+</div>
+
+<!-- Last Login Section -->
+<div class="px-3 mb-4">
+  <div class="flex rounded-md items-center bg-gray-800 py-2 px-4 w-fit">
+    <h1 class="text-white text-center">Last Login: {{ last_login }}</h1>
+  </div>
+</div>
+
+<!-- Your Flower Collection Heading -->
+<div class="px-4 py-4">
+  <p class="text-center text-gray-400 mt-2">You can add, edit, or delete any product collection!</p>
+</div>
+
+<!-- Display Message if No Entries -->
 {% if not clothing_entries %}
-  <p>Belum ada data item baju pada Corée Élégante.</p>
+  <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+    <img src="{% static 'sedih-banget.png' %}" alt="No data" class="w-32 h-32 mb-4"/>
+    <p class="text-center text-gray-400 mt-4">No clothing data available in the tracker.</p>
+  </div>
 {% else %}
-  <table>
-    <thead>
-      <tr>
-        <th>Nama Item</th>
-        <th>Harga</th>
-        <th>Deskripsi</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for clothing_entry in clothing_entries %}
-        <tr>
-          <td>{{ clothing_entry.nama_item }}</td>
-          <td>{{ clothing_entry.harga }}</td> 
-          <td>{{ clothing_entry.deskripsi }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <!-- Clothing Entries Display -->
+  <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full">
+    {% for clothing_entry in clothing_entries %}
+      {% include 'card_clothing.html' with clothing_entry=clothing_entry %}
+    {% endfor %}
+  </div>
 {% endif %}
 
-<br />
+<!-- Add New Clothing Button (Moved to the bottom) -->
+<div class="flex justify-end mt-8 mb-6">
+  <a href="{% url 'main:create_clothing_entry' %}" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+    Add New Clothing Entry
+  </a>
+</div>
 
-<a href="{% url 'main:create_clothing_entry' %}">
-  <button>Add New Clothing Item</button>
-<a href="{% url 'main:logout' %}">
-  <button>Logout</button>
-  <h5>Sesi terakhir login: {{ last_login }}</h5>
-</a>
+</div>
 
 {% endblock content %}

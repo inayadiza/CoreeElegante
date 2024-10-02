@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Product Collection</title>
+{% endblock meta %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-24 min-h-screen bg-gray-100 text-gray-900">
+  
+  <!-- Page Heading -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold mb-4">Our Products</h1>
+    <p class="text-lg text-gray-600">Explore our wide range of apparel products, including sweaters, T-shirts, cardigans, jeans, and many more!</p>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    
+    <!-- Sweater Product -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="{% static 'sweater.jpg' %}" alt="Sweater" class="w-full h-48 object-cover">
+      <div class="p-4 text-center">
+        <h3 class="text-xl font-semibold">Sweater</h3>
+      </div>
+    </div>
+    
+    <!-- T-shirt Product -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="{% static 't-shirt.jpg' %}" alt="t-shirt" class="w-full h-48 object-cover">
+      <div class="p-4 text-center">
+        <h3 class="text-xl font-semibold">T-shirt</h3>
+      </div>
+    </div>
+    
+    <!-- Cardigan Product -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="{% static 'cardigan.jpg' %}" alt="Cardigan" class="w-full h-48 object-cover">
+      <div class="p-4 text-center">
+        <h3 class="text-xl font-semibold">Cardigan</h3>
+      </div>
+    </div>
+
+    <!-- Jeans Product -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="{% static 'jeans.jpg' %}" alt="Jeans" class="w-full h-48 object-cover">
+      <div class="p-4 text-center">
+        <h3 class="text-xl font-semibold">Jeans</h3>
+      </div>
+    </div>
+    
+    
+  </div>
+
+</div>
+
+{% endblock content %}
