@@ -156,3 +156,85 @@ Namun, tidak semua cookies aman. Cookies dapat disalahgunakan oleh serangan sepe
 
 ### 5. Menyimpan dan Push ke GitHub
 - Setelah memastikan fitur berjalan dengan baik, saya melakukan commit terhadap perubahan dan mem-push-nya ke GitHub, sesuai checklist yang ada.
+
+# Tugas 5
+
+## 1. Urutan Prioritas CSS Selector
+Ketika terdapat beberapa CSS selector yang diterapkan pada elemen HTML yang sama, browser menggunakan **specificity** untuk menentukan gaya yang diterapkan. Urutan prioritasnya adalah:
+
+1. **Inline CSS**: Gaya yang ditulis langsung di elemen HTML menggunakan atribut `style`.
+   - Contoh: `<div style="color: red;">Teks</div>`
+   
+2. **ID Selector**: Selector menggunakan ID elemen (misalnya `#myId`).
+   - Contoh: `#myDiv { color: blue; }`
+   
+3. **Class, Attribute, dan Pseudo-class Selector**: Selector berdasarkan class (`.class`), atribut (`[type="text"]`), atau pseudo-class (`:hover`).
+   - Contoh: `.myClass { color: green; }`
+   
+4. **Element/Tag Selector**: Selector berdasarkan elemen HTML (misalnya `div`, `p`, `h1`).
+   - Contoh: `div { color: black; }`
+
+Jika dua selector memiliki specificitas yang sama, aturan yang muncul **terakhir** dalam file CSS akan diterapkan (konsep **cascading**).
+
+## 2. Pentingnya Responsive Design dalam Pengembangan Web
+Responsive design adalah pendekatan desain web yang memungkinkan tampilan website beradaptasi dengan berbagai ukuran layar dan perangkat, seperti desktop, tablet, atau smartphone.
+
+### Pentingnya Responsive Design:
+- Pengalaman Pengguna (User Experience): Tampilan website tetap optimal di berbagai perangkat.
+- SEO (Search Engine Optimization): Mesin pencari seperti Google memberikan peringkat lebih tinggi pada situs yang responsif.
+- Aksesibilitas: Memastikan website dapat diakses dengan baik - dari perangkat apapun, memberikan pengalaman yang seragam.
+
+### Contoh Aplikasi:
+- Sudah Menerapkan Responsive Design: Instagram – antarmuka beradaptasi dengan baik di desktop dan mobile.
+- Belum Menerapkan Responsive Design: Beberapa situs lama yang tidak dirancang untuk mobile masih menampilkan elemen yang tidak teratur pada perangkat kecil.
+
+## 3. Perbedaan Margin, Border, dan Padding
+Ketiganya merupakan bagian dari CSS Box Model, yang mengatur spasi di sekitar elemen.
+
+### Margin: Ruang di luar border elemen, memberikan jarak antara elemen lain.
+Contoh: margin: 10px; (jarak antar elemen dengan elemen lain).
+
+### Border: Garis di sekitar elemen, memisahkan konten dan margin.
+Contoh: border: 2px solid black; (border berwarna hitam di sekitar elemen).
+
+### Padding: Ruang di dalam border, memberikan jarak antara konten elemen dan border.
+Contoh: padding: 10px; (memberi ruang di dalam elemen, antara konten dan border).
+
+
+## 4. Konsep Flexbox dan Grid Layout
+### Flexbox
+Flexbox adalah layout model di CSS yang digunakan untuk mengatur elemen dalam satu dimensi (baik baris maupun kolom). Kegunaan utamanya adalah untuk mempermudah perataan elemen, pembagian ruang, dan fleksibilitas konten.
+
+### Grid Layout
+CSS Grid adalah layout model dua dimensi yang memungkinkan kita untuk membuat tata letak kompleks dengan kolom dan baris. Grid lebih cocok untuk struktur halaman yang lebih kompleks dibanding Flexbox.
+
+## 5. Pengimplementasian Checklist secara Step-by-Step: 
+Berikut adalah beberapa yang saya lakukan untuk memenuhi checklist pada tugas ke 5 :
+### 1. Menambahkan Tailwind ke Aplikasi
+Saya mengintegrasikan Tailwind CSS ke dalam aplikasi dengan menambahkan CDN ke dalam base.html agar semua halaman aplikasi dapat menggunakan utility classes dari Tailwind untuk styling.
+
+### 2. Menambahkan Fitur "Edit"
+Saya membuat fungsi edit item di views.py untuk memungkinkan pengguna mengedit item yang telah ditambahkan. Saya juga menambahkan form di edit_item.html untuk mengisi detail item yang akan diubah.
+
+### 3. Menambahkan Fitur "Delete"
+Saya menambahkan fitur delete untuk menghapus item yang sudah di-add. Ini dilakukan dengan menambahkan fungsi delete di views.py dan menambahkan tombol delete di main.html yang memungkinkan pengguna menghapus item.
+
+### 4. Membuat Navbar Sederhana
+Saya mendesain navbar awal yang hanya berisi tombol logout dan ucapan selamat datang kepada pengguna, yang terhubung dengan template base.html agar muncul di semua halaman.
+
+### 5. Konfigurasi Static Files
+Saya melakukan pengaturan file statis di settings.py, menambahkan konfigurasi STATIC_URL dan STATICFILES_DIRS untuk memastikan bahwa CSS, gambar, dan JavaScript dapat diakses oleh aplikasi.
+
+### 6. Membuat Sketsa Desain di Canva
+Sebelum melakukan styling, saya membuat sketsa tampilan aplikasi menggunakan Canva untuk memvisualisasikan desain halaman dan navigasi.
+
+### 7. Menambahkan Styling dengan Tailwind dan CSS
+Saya melakukan styling halaman login, register, home, create clothing entry, dan edit clothingdengan kombinasi Tailwind dan CSS. Setiap halaman disesuaikan dengan layout dan tampilan yang diinginkan.
+
+### 8. Mendesain Navbar dengan Beberapa Pilihan Button
+Saya memperluas navbar dengan menambahkan beberapa pilihan navigasi:
+Home: Mengarah ke main.html.
+Products: Mengarah ke proucts.html.
+
+### 9. Push Github dan PWS
+Setelah selesai dengan pengembangan dan penambahan fitur, saya melakukan push ke repository GitHub dan melakukan deploy ke PWS untuk memastikan aplikasi dapat diakses secara online.
