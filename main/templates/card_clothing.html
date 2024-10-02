@@ -8,24 +8,29 @@
 
     <!-- Main Card -->
     <div class="relative top-5 bg-white shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col items-center justify-center text-center border-2 border-gray-300 p-6 max-w-sm mx-auto">
-      <!-- Nama Item -->
-      <div class="text-black text-2xl font-bold mb-2">
-        {{ clothing_entry.nama_item }}
-      </div>
-      
-      <!-- Waktu -->
-      <div class="text-gray-600 text-md mb-4">
-        {{ clothing_entry.time }}
-      </div>
-      
-      <!-- Deskripsi -->
-      <div class="text-black text-md mb-4">
-        {{ clothing_entry.deskripsi }}
-      </div>
-      
-      <!-- Harga -->
-      <div class="text-black text-xl font-semibold">
-        {{ clothing_entry.harga }}
-      </div>
+        <!-- Nama Item -->
+        <div class="text-black text-2xl font-bold mb-2">
+            {{ clothing_entry.nama_item }}
+        </div>
+
+        <!-- Waktu -->
+        <div class="text-gray-600 text-md mb-4">
+            {{ clothing_entry.time }}
+        </div>
+
+        <!-- Deskripsi -->
+        <div class="text-black text-md mb-4">
+            {{ clothing_entry.deskripsi }}
+        </div>
+
+        <!-- Harga -->
+        <div class="text-black text-xl font-semibold">
+            {{ clothing_entry.harga }}
+        </div>
+
+        <!-- Edit Button -->
+        <a href="{% url 'main:edit_clothing' clothing_entry.id %}" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Edit
+        </a>
     </div>
 </div>
