@@ -3,6 +3,7 @@
 
 {% block meta %}
 <title>Clothing Tracker</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
 {% endblock meta %}
 
 {% block content %}
@@ -13,7 +14,6 @@
   <div class="flex flex-col items-start justify-center min-h-screen">
     <!-- Welcome, Username, NPM, and Class in a Smaller Box aligned to the left -->
     <div class="max-w-sm bg-white rounded-xl overflow-hidden border-2 border-gray-200 shadow-md p-4 ml-0 lg:ml-4 sm:self-center lg:self-start">
-        <!-- Welcome Message -->
         <div class="mb-4">
             <h5 class="text-lg font-semibold text-gray-800">Welcome, <span class="font-bold">{{ user.username }}</span>!</h5>
         </div>
@@ -31,14 +31,6 @@
         </div>
     </div>
   </div>
-
-  <!-- Decorative Bar -->
-  <div class="w-full px-6 absolute top-[44px] left-0 z-20 hidden md:flex">
-    <div class="w-full min-h-4 bg-gray-800"></div>
-  </div>
-  <div class="h-full w-full py-6 absolute top-0 left-0 z-20 md:hidden flex">
-    <div class="h-full min-w-4 bg-gray-800 mx-auto"></div>
-  </div>
 </div>
 
 <!-- Last Login Section -->
@@ -53,28 +45,173 @@
   <p class="text-center text-gray-400 mt-2">You can add, edit, or delete any product collection!</p>
 </div>
 
-<!-- Display Message if No Entries -->
-{% if not clothing_entries %}
-  <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
-    <img src="{% static 'sedih-banget.png' %}" alt="No data" class="w-32 h-32 mb-4"/>
-    <p class="text-center text-gray-400 mt-4">No clothing data available in the tracker.</p>
-  </div>
-{% else %}
-  <!-- Clothing Entries Display -->
-  <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full">
-    {% for clothing_entry in clothing_entries %}
-      {% include 'card_clothing.html' with clothing_entry=clothing_entry %}
-    {% endfor %}
-  </div>
-{% endif %}
+<div id="card_info"></div>
 
-<!-- Add New Clothing Button (Moved to the bottom) -->
+<!-- Add New Clothing Button -->
 <div class="flex justify-center sm:justify-end mt-8 mb-6">
+  <!-- Non-AJAX Button -->
   <a href="{% url 'main:create_clothing_entry' %}" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
     Add New Clothing Entry
   </a>
+do
+  <!-- AJAX Button -->
+  <button class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+    Add New Clothing by AJAX
+</button>
+
+<!-- Modal for adding new clothing -->
+<div id="crudModal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full flex items-center justify-center bg-gray-800 bg-opacity-50 overflow-x-hidden overflow-y-auto transition-opacity duration-300 ease-out">
+  <div id="crudModalContent" class="relative bg-white rounded-lg shadow-lg w-5/6 sm:w-3/4 md:w-1/2 lg:w-1/3 mx-4 sm:mx-0 transform scale-95 opacity-0 transition-transform transition-opacity duration-300 ease-out">
+    <!-- Modal header -->
+    <div class="flex items-center justify-between p-4 border-b rounded-t">
+      <h3 class="text-xl font-semibold text-gray-900">
+        Add New Clothing Entry
+      </h3>
+      <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" id="closeModalBtn">
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
+    </div>
+    <!-- Modal body -->
+    <div class="px-6 py-4 space-y-6 form-style">
+      <form id="ClothingEntryForm">
+        <div class="mb-4">
+          <label for="nama_item" class="block text-sm font-medium text-gray-700">Nama Item</label>
+          <input type="text" id="nama_item" name="nama_item" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter your Name Product" required>
+        </div>
+        <div class="mb-4">
+          <label for="harga" class="block text-sm font-medium text-gray-700">Harga</label>
+          <input type="number" id="harga" name="harga" min="0" class="mt-1 block w-full border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter product price" required>
+        </div>
+        <div class="mb-4">
+          <label for="deskripsi" class="block text-sm font-medium text-gray-700">Deskripsi</label>
+          <textarea id="deskripsi" name="deskripsi" rows="3" class="mt-1 block w-full resize-none border border-gray-300 rounded-md p-2 hover:border-indigo-700" placeholder="Enter product description" required></textarea>
+        </div>
+      </form>
+    </div>
+    <!-- Modal footer -->
+    <div class="flex justify-end p-4 border-t">
+      <button class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg mr-2" id="cancelButton">Cancel</button>
+      <button class="bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg" id="submitClothingEntry">Save</button>
+    </div>
+  </div>
 </div>
 
-</div>
+<script>
+  async function getClothingEntries(){
+      return fetch("{% url 'main:show_json' %}").then((res) => res.json());
+  }
+
+  async function refreshClothingEntries() {
+    const cardInfo = document.getElementById("card_info");
+    cardInfo.innerHTML = "";
+    cardInfo.className = "";
+
+    const clothingEntries = await getClothingEntries();  // Fetch the clothing entries
+    let htmlString = "";
+    let classNameString = "";
+
+    if (clothingEntries.length === 0) {
+        classNameString = "flex flex-col items-center justify-center min-h-[24rem] p-6";
+        htmlString = `
+            <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+                <img src="{% static 'sedih-banget.png' %}" alt="No data" class="w-32 h-32 mb-4"/>
+                <p class="text-center text-gray-600 mt-4">No clothing entries available.</p>
+            </div>
+        `;
+    } else {
+        classNameString = "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full";
+        
+        // Iterate over each clothing entry and sanitize the fields
+        clothingEntries.forEach((item) => {
+            const nama_item = DOMPurify.sanitize(item.fields.nama_item);  // Sanitize nama_item
+            const harga = DOMPurify.sanitize(item.fields.harga);  // Sanitize harga
+            const deskripsi = DOMPurify.sanitize(item.fields.deskripsi);  // Sanitize deskripsi
+
+            htmlString += `
+            <div class="relative break-inside-avoid mx-auto">
+              <div class="relative top-5 bg-black shadow-md mb-4 break-inside-avoid flex flex-col border-2 border-gray-700 transform rotate-1 hover:rotate-0 transition-transform duration-300 w-64 mx-auto rounded-xl">
+                  <div class="bg-gray-800 text-white p-2 border-b-2 border-gray-700 rounded-t-xl">
+                      <h3 class="font-bold text-lg mb-1">${nama_item}</h3>
+                      <p class="text-gray-400">Rp ${harga}</p>
+                  </div>
+                  <div class="p-2 rounded-b-xl">
+                      <p class="font-semibold text-base mb-1 text-white">Description</p>
+                      <p class="text-gray-400 mb-1">${deskripsi}</p>
+                  </div>
+                  <!-- Edit and Delete Buttons -->
+                  <div class="absolute top-0 -right-3 flex space-x-1">
+                      <!-- Edit Button with Pink, Star Icon, and Oval Shape -->
+                      <a href="/edit-clothing/${item.pk}" class="bg-pink-500 hover:bg-pink-600 text-white p-1 transition duration-300 shadow-md flex items-center rounded-full">
+                          <!-- Star Icon -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-1" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 .587l3.668 7.429L23.5 9.275l-5.83 5.532L19.337 24 12 20.413 4.663 24l1.667-9.193L.5 9.275l7.832-1.259L12 .587z" />
+                          </svg>
+                          Edit
+                      </a>
+                      <!-- Delete Button -->
+                      <a href="/delete/${item.pk}" class="bg-red-500 hover:bg-red-600 text-white p-1 transition duration-300 shadow-md rounded-full">
+                          <!-- Trash Icon -->
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 000 2v10a2 2 002 2h8a2 2 002-2V6a1 1 000-2h-3.382l-.724-1.447A1 1 0011 2H9zM7 8a1 1 012 0v6a1 1 11-2 0V8zm5-1a1 1 00-1 1v6a1 1 102 0V8a1 1 00-1-1z" clip-rule="evenodd" />
+                          </svg>
+                      </a>
+                  </div>
+              </div>
+            </div>
+            `;
+          });
+    }
+
+
+    cardInfo.className = classNameString;
+    cardInfo.innerHTML = htmlString;
+}
+
+  function showModal() {
+      const modal = document.getElementById('crudModal');
+      const modalContent = document.getElementById('crudModalContent');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modalContent.classList.remove('opacity-0', 'scale-95');
+        modalContent.classList.add('opacity-100', 'scale-100');
+      }, 50);
+  }
+
+  function hideModal() {
+      const modalContent = document.getElementById('crudModalContent');
+      modalContent.classList.remove('opacity-100', 'scale-100');
+      modalContent.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => {
+        document.getElementById('crudModal').classList.add('hidden');
+      }, 150);
+  }
+
+  function addClothingEntry() {
+    fetch("{% url 'main:add_clothing_entry_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#ClothingEntryForm')),
+    })
+    .then(response => {
+      if (response.ok) {
+        refreshClothingEntries();  // Refresh entries after adding
+        hideModal();  // Close the modal
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  }
+
+  document.getElementById("cancelButton").addEventListener("click", hideModal);
+  document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+  document.getElementById("submitClothingEntry").addEventListener("click", (e) => {
+    e.preventDefault();
+    addClothingEntry();
+  });
+
+  // Load entries on page load
+  refreshClothingEntries();
+</script>
 
 {% endblock content %}
