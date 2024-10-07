@@ -1,0 +1,101 @@
+.form-style form input, form textarea, form select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #bcbcbc;
+    border-radius: 0.375rem;
+}
+.form-style form input:focus, form textarea:focus, form select:focus {
+    outline: none;
+    border-color: #674ea7;
+    box-shadow: 0 0 0 3px #674ea7;
+}
+@keyframes shine {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+.animate-shine {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.3));
+    background-size: 200% 100%;
+    animation: shine 3s infinite;
+}
+.background-image {
+    background-image: url('/static/background.jpg') !important; /* Adjust the path */
+    background-size: cover;
+    background-position: center;
+}
+input {
+    text-align: center;
+    width: 100%;
+}
+label {
+text-align: center;
+}
+.slide-up {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.slide-up.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+/* Black Box Styling */
+.bg-black {
+    background-color: black;
+    color: white;
+}
+/* Background image covers the initial view, then black background for scrolling */
+.bg-gray-100 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: black; /* Ensure black background during scroll */
+}
+
+/* Pop-up effect */
+.hover:scale-105 {
+    transition: transform 0.3s ease-in-out;
+}
+
+.hover:translate-y-2 {
+    transform: translateY(2px);
+}
+
+/* Vertical spacing between elements */
+.space-y-4 > * + * {
+    margin-top: 1rem;
+}
+
+/* Text */
+.text-white {
+    color: white;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+/* Initially hide the button and message using opacity */
+#no-data-message,
+#add-clothing-btn {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Smooth transition */
+}
+
+/* Center message */
+#no-data-message {
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* When the user scrolls, the button and message will fade in */
+#no-data-message.visible,
+#add-clothing-btn.visible {
+    opacity: 1;
+}
+
+
+

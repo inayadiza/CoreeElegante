@@ -1,0 +1,93 @@
+{% load static %} <!-- Django static tag is loaded for logo -->
+<nav style="background-color: black;" class="shadow-lg fixed top-0 left-0 z-40 w-full">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo and Title -->
+      <div class="flex items-center">
+        <img src="{% static 'logo.png' %}" alt="Logo" class="h-10 w-10 mr-3">
+        <h1 class="text-2xl font-extrabold text-white">Corée Élégante</h1>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center">
+        <ul class="flex items-center space-x-6">
+          <li>
+            <a href="{% url 'main:show_main' %}" class="text-white font-semibold hover:text-[#FF1A9C] transition duration-300 {% if request.resolver_match.url_name == 'show_main' %}font-bold{% endif %}">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'main:show_clothing' %}" class="text-white font-semibold hover:text-[#FF1A9C] transition duration-300 {% if request.resolver_match.url_name == 'show_clothing' %}font-bold{% endif %}">
+              Product
+            </a>
+          </li>
+        </ul>
+
+        {% if user.is_authenticated %}
+          <span class="text-white font-semibold ml-6">Welcome, {{ user.username }}</span>
+          <a href="{% url 'main:logout' %}" class="bg-white hover:bg-gray-200 text-black font-bold py-2 px-4 rounded-lg ml-4">
+            Logout
+          </a>
+        {% else %}
+          <a href="{% url 'main:login' %}" class="bg-white hover:bg-gray-200 text-black font-bold py-2 px-4 rounded-lg ml-4">
+            Login
+          </a>
+          <a href="{% url 'main:register' %}" class="bg-white hover:bg-gray-200 text-black font-bold py-2 px-4 rounded-lg ml-4">
+            Register
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button class="mobile-menu-button">
+          <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu hidden md:hidden px-4 w-full transition-all duration-300 ease-in-out transform origin-top scale-y-0">
+    <div class="pt-2 pb-3 space-y-1 mx-auto">
+      <ul class="space-y-2">
+        <li>
+          <a href="{% url 'main:show_main' %}" class="block text-white text-center font-semibold hover:text-[#FF1A9C] transition duration-300">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'main:show_clothing' %}" class="block text-white text-center font-semibold hover:text-[#FF1A9C] transition duration-300">
+            Product
+          </a>
+        </li>
+      </ul>
+
+      {% if user.is_authenticated %}
+        <span class="block text-white px-3 py-2 text-center font-semibold">Welcome, {{ user.username }}</span>
+        <a href="{% url 'main:logout' %}" class="block text-center bg-white hover:bg-gray-200 text-black font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+          Logout
+        </a>
+      {% else %}
+        <a href="{% url 'main:login' %}" class="block text-center bg-white hover:bg-gray-200 text-black font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 mb-2">
+          Login
+        </a>
+        <a href="{% url 'main:register' %}" class="block text-center bg-white hover:bg-gray-200 text-black font-bold py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">
+          Register
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    const btn = document.querySelector("button.mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      menu.style.transform = menu.classList.contains('hidden') ? 'scaleY(0)' : 'scaleY(1)';
+    });
+  </script>
+</nav>

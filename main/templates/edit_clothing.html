@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>Edit Clothing Entry</title>
+{% endblock meta %}
+
+{% block content %}
+{% include 'navbar.html' %}
+<div class="flex flex-col min-h-screen bg-black"> <!-- Main background remains black -->
+  <div class="container mx-auto px-4 py-8 mt-16 max-w-xl">
+    <h1 class="text-3xl font-bold text-center mb-8 text-white">Edit Clothing Entry</h1> <!-- Header remains white for contrast -->
+
+    <div class="bg-white rounded-lg p-6 form-style"> <!-- Form background is white -->
+      <form method="POST" class="space-y-6">
+          {% csrf_token %}
+          {% for field in form %}
+              <div class="flex flex-col">
+                  <label for="{{ field.id_for_label }}" class="mb-2 font-semibold text-gray-700"> <!-- Label text set to dark gray and bold -->
+                      {% if field.name == 'nama_item' or field.name == 'deskripsi' or field.name == 'harga' %}
+                          <strong>{{ field.label }}</strong> <!-- Bold these specific fields -->
+                      {% else %}
+                          {{ field.label }}
+                      {% endif %}
+                  </label>
+                  <div class="w-full">
+                      {{ field }}
+                  </div>
+                  {% if field.help_text %}
+                      <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p> <!-- Help text color in light gray -->
+                  {% endif %}
+                  {% for error in field.errors %}
+                      <p class="mt-1 text-sm text-red-600">{{ error }}</p> <!-- Error messages in red -->
+                  {% endfor %}
+              </div>
+          {% endfor %}
+          <div class="flex justify-center mt-6">
+              <button type="submit" class="bg-black text-white font-semibold px-6 py-3 rounded-lg hover:bg-gray-800 transition duration-300 ease-in-out w-full">
+                  Edit Clothing Entry
+              </button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
