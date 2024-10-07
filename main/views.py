@@ -125,7 +125,7 @@ def show_clothing(request):
 def add_clothing_entry_ajax(request):
     nama_item = strip_tags(request.POST.get("nama_item"))
     harga = strip_tags (request.POST.get("harga"))
-    deskripsi = request.POST.get("deskripsi")
+    deskripsi = strip_tags (request.POST.get("deskripsi"))
     user = request.user
 
     new_clothing = ClothingEntry(
