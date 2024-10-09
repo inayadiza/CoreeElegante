@@ -303,9 +303,11 @@ Untuk melindungi aplikasi dari potensi serangan XSS, saya melakukan beberapa lan
 ## 8. Add, Commit, dan Push Perubahan ke GitHub
 Setelah semua perubahan dilakukan, saya menyimpan dan memperbarui proyek dengan melakukan `add`, `commit`, dan `push` ke repositori GitHub untuk memastikan proyek tersimpan secara online dan up-to-date.
 
-<details>
+</details>
 
 ## Author
-Nama: Waode Inaya Diza Mainah
-NPM: 2306245711
-Kelas: PBP B
+**Nama: Waode Inaya Diza Mainah**
+
+**NPM: 2306245711**
+
+**Kelas: PBP B**
