@@ -49,6 +49,11 @@
 
 <!-- Add New Clothing Button -->
 <div class="flex justify-center sm:justify-end mt-8 mb-6">
+  <!-- Non-AJAX Button -->
+  <a href="{% url 'main:create_clothing_entry' %}" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+    Add New Clothing Entry
+  </a>
+do
   <!-- AJAX Button -->
   <button class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
     Add New Clothing by AJAX

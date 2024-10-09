@@ -8,6 +8,9 @@ Aplikasi **Corée Élégante** adalah platform e-commerce yang menjual berbagai 
 - **Harga**
 - **Deskripsi**
 
+<details>
+  <summary>Tugas 2 </summary>
+
 # TUGAS 2
 ## Implementasi demi langkah
 Berikut adalah beberapa langkah yang saya lakukan untuk menyelesaikan checklist tugas 2 ini:
@@ -51,6 +54,10 @@ Menurut saya, framework Django dipilih karena full-stack framework-nya yang leng
 
 ## Mengapa Model pada Django Disebut sebagai ORM?
 Model di Django disebut ORM (Object-Relational Mapping) karena memungkinkan pengembang bekerja dengan data sebagai objek Python tanpa menulis SQL secara langsung, sehingga memudahkan interaksi dengan basis data.
+<details>
+
+<details>
+  <summary>Tugas 3</summary>
 
 # TUGAS 3
 
@@ -94,6 +101,11 @@ Method `is_valid()` berfungsi untuk memvalidasi input dari form sebelum data dis
 ![Postman JSON ID](screenshoot/Screenshot%202024-09-17%20224755.png)
 ![Postman XML](screenshoot/Screenshot%202024-09-17%20224148.png)
 ![Postman XML ID](screenshoot/Screenshot%202024-09-17%20224721.png)
+
+<details>
+
+<details>
+  <summary>Tugas 4 </summary>
 
 # Tugas 4 - Django Authentication, Authorization, dan Manajemen Item
 
@@ -156,6 +168,11 @@ Namun, tidak semua cookies aman. Cookies dapat disalahgunakan oleh serangan sepe
 
 ### 5. Menyimpan dan Push ke GitHub
 - Setelah memastikan fitur berjalan dengan baik, saya melakukan commit terhadap perubahan dan mem-push-nya ke GitHub, sesuai checklist yang ada.
+
+<details>
+
+<details>
+  <summary>Tugas 5</summary>
 
 # Tugas 5
 
@@ -238,3 +255,68 @@ Products: Mengarah ke proucts.html.
 
 ### 9. Push Github dan PWS
 Setelah selesai dengan pengembangan dan penambahan fitur, saya melakukan push ke repository GitHub dan melakukan deploy ke PWS untuk memastikan aplikasi dapat diakses secara online.
+
+<details>
+
+<details>
+  <summary>Tugas 6</summary>
+
+# Tugas 6
+### 1. Manfaat JavaScript
+- **Interaktivitas**: Dengan JavaScript, elemen seperti tombol, form, atau konten dapat diubah secara dinamis tanpa memuat ulang halaman, sehingga meningkatkan pengalaman pengguna (user experience).
+- **Kecepatan**: JavaScript dijalankan langsung di browser pengguna, yang berarti tidak ada waktu tunda komunikasi dengan server.
+- **Kompatibilitas**: JavaScript mendukung berbagai browser dan platform, membuatnya fleksibel untuk berbagai jenis aplikasi.
+- **Ekosistem yang Kuat**: Banyak framework dan pustaka JavaScript, seperti React, Angular, dan Vue.js, yang membantu mempercepat pengembangan.
+- **Fungsi Asynchronous**: Dengan dukungan asynchronous, aplikasi dapat memuat data di latar belakang tanpa mengganggu interaksi pengguna.
+
+### 2. Fungsi Penggunaan `await` dalam `fetch()`
+`await` digunakan untuk menunggu hingga `fetch()` menyelesaikan eksekusi dan mengembalikan hasil. Ini sangat berguna untuk menangani operasi asynchronous, seperti mengambil data dari server, tanpa harus menggunakan callback atau promises secara eksplisit.
+
+### 3. Mengapa Menggunakan Decorator csrf_exempt pada View untuk AJAX POST?
+Decorator csrf_exempt digunakan untuk menonaktifkan pemeriksaan Cross-Site Request Forgery (CSRF) pada view tertentu, terutama saat mengembangkan aplikasi menggunakan AJAX POST. CSRF adalah mekanisme keamanan yang mencegah serangan berbahaya dengan memastikan bahwa permintaan POST berasal dari sumber yang sah.
+
+Pada AJAX POST, sering kali token CSRF tidak otomatis dikirimkan, sehingga request akan diblokir kecuali token disertakan. Namun, penggunaan csrf_exempt harus dilakukan dengan hati-hati agar tidak membuka celah keamanan dalam aplikasi.
+
+### 4. Mengapa Pembersihan Data Input Pengguna Dilakukan di Backend, Bukan di Frontend?
+Pembersihan data di backend penting untuk menjaga integritas data dan keamanan aplikasi. Meskipun pembersihan di frontend bisa dilakukan untuk memberikan pengalaman pengguna yang lebih baik, hal tersebut tidak cukup untuk mencegah serangan berbahaya, seperti:
+
+- *** Validasi di frontend mudah di-bypass ***: Pengguna dapat mematikan JavaScript di browser mereka atau mengirim request yang dimodifikasi menggunakan alat seperti Postman.
+- *** Keamanan *** : Backend perlu memverifikasi dan memvalidasi semua data untuk mencegah SQL injection, XSS (cross-site scripting), dan serangan lainnya.
+- *** Konsistensi *** : Jika pembersihan hanya dilakukan di frontend, ada risiko bahwa data yang tidak divalidasi dengan benar masuk ke sistem backend.
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+## 1. Menampilkan Pesan Kesalahan Saat Login Gagal
+Pada tahap ini, saya menambahkan fitur untuk menampilkan pesan kesalahan jika login pengguna gagal, misalnya ketika pengguna salah memasukkan username atau password. Pesan ini memberikan informasi yang jelas agar pengguna bisa memperbaiki input mereka dan mencoba lagi.
+
+## 2. Membuat Fungsi untuk Menambahkan Item Menggunakan AJAX
+Saya membuat fungsi yang memungkinkan pengguna menambahkan item baru ke daftar secara asinkron menggunakan AJAX. Dengan demikian, pengguna dapat menambahkan item tanpa perlu memuat ulang halaman, yang membuat aplikasi lebih responsif.
+
+## 3. Menambahkan Routing untuk Fungsi `add_item_entry_ajax`
+Langkah ini melibatkan penambahan routing untuk menghubungkan fungsi `add_item_entry_ajax` ke URL tertentu. Dengan ini, server dapat menerima data yang dikirim oleh pengguna dan memprosesnya dengan benar.
+
+## 4. Menampilkan Data Item dengan `fetch()` API
+Untuk menampilkan daftar item yang sudah tersimpan, saya menggunakan `fetch()` API agar data bisa ditampilkan kembali tanpa harus memuat ulang halaman. Hal ini membuat pengalaman pengguna lebih cepat dan dinamis.
+
+## 5. Membuat Modal Sebagai Form Input untuk Menambahkan Item
+Saya membuat modal yang berfungsi sebagai form input agar pengguna dapat menambahkan item baru dengan lebih interaktif. Modal ini memungkinkan pengguna memasukkan data tanpa perlu berpindah halaman.
+
+## 6. Menambahkan Item Baru Menggunakan AJAX
+Ketika pengguna menambahkan item baru, data tersebut dikirimkan ke server menggunakan AJAX. Hal ini memungkinkan penambahan item tanpa harus me-refresh halaman, memberikan pengalaman pengguna yang lebih lancar dan tanpa gangguan.
+
+## 7. Melindungi Aplikasi dari Serangan Cross-Site Scripting (XSS)
+Untuk melindungi aplikasi dari potensi serangan XSS, saya melakukan beberapa langkah proteksi baik di frontend maupun backend.
+
+- **Uji XSS**: Saya melakukan pengujian dengan menyisipkan skrip XSS untuk melihat apakah aplikasi rentan terhadap serangan ini.
+- **Menambahkan `strip_tags` di Backend**: Fungsi `strip_tags` digunakan untuk membersihkan data dari tag HTML berbahaya sebelum data diproses oleh server.
+- **Pembersihan Data dengan DOMPurify**: Di frontend, saya menggunakan DOMPurify untuk membersihkan data sebelum ditampilkan, memastikan bahwa data yang dihasilkan aman dari potensi XSS.
+
+## 8. Add, Commit, dan Push Perubahan ke GitHub
+Setelah semua perubahan dilakukan, saya menyimpan dan memperbarui proyek dengan melakukan `add`, `commit`, dan `push` ke repositori GitHub untuk memastikan proyek tersimpan secara online dan up-to-date.
+
+<details>
+
+## Author
+Nama: Waode Inaya Diza Mainah
+NPM: 2306245711
+Kelas: PBP B
