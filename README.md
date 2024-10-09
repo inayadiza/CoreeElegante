@@ -306,8 +306,4 @@ Setelah semua perubahan dilakukan, saya menyimpan dan memperbarui proyek dengan 
 </details>
 
 ## Author
-**Nama: Waode Inaya Diza Mainah**
-
-**NPM: 2306245711**
-
-**Kelas: PBP B**
+**Waode Inaya Diza Mainah**
