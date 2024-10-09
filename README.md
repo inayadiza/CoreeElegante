@@ -1,6 +1,9 @@
-# Corée Élégante - Korean Fashion Clothing
+# Corée Élégante - Fashion Clothing
 
-Ini adalah repository untuk **Corée Élégante**, sebuah aplikasi e-commerce yang dikembangkan untuk **Tugas 2: Pemrograman Berbasis Platform**.
+Ini adalah repository untuk **Corée Élégante**, sebuah aplikasi e-commerce yang dikembangkan untuk **Tugas Pemrograman Berbasis Platform**.
+
+<details>
+  <summary>Tugas 2</summary>
 
 ## Deskripsi Proyek
 Aplikasi **Corée Élégante** adalah platform e-commerce yang menjual berbagai macam pakaian bergaya Korea yang lucu dan trendi. Pengguna dapat menjelajahi koleksi fashion, melihat detail produk seperti:
@@ -8,10 +11,6 @@ Aplikasi **Corée Élégante** adalah platform e-commerce yang menjual berbagai 
 - **Harga**
 - **Deskripsi**
 
-<details>
-  <summary>Tugas 2 </summary>
-
-# TUGAS 2
 ## Implementasi demi langkah
 Berikut adalah beberapa langkah yang saya lakukan untuk menyelesaikan checklist tugas 2 ini:
 
@@ -54,6 +53,7 @@ Menurut saya, framework Django dipilih karena full-stack framework-nya yang leng
 
 ## Mengapa Model pada Django Disebut sebagai ORM?
 Model di Django disebut ORM (Object-Relational Mapping) karena memungkinkan pengembang bekerja dengan data sebagai objek Python tanpa menulis SQL secara langsung, sehingga memudahkan interaksi dengan basis data.
+</details>
 
 <details>
   <summary>Tugas 3</summary>
@@ -98,7 +98,7 @@ Method `is_valid()` berfungsi untuk memvalidasi input dari form sebelum data dis
 ![Postman JSON ID](screenshoot/Screenshot%202024-09-17%20224755.png)
 ![Postman XML](screenshoot/Screenshot%202024-09-17%20224148.png)
 ![Postman XML ID](screenshoot/Screenshot%202024-09-17%20224721.png)
-
+</details>
 
 <details>
   <summary>Tugas 4 </summary>
@@ -162,7 +162,7 @@ Namun, tidak semua cookies aman. Cookies dapat disalahgunakan oleh serangan sepe
 
 ### 5. Menyimpan dan Push ke GitHub
 - Setelah memastikan fitur berjalan dengan baik, saya melakukan commit terhadap perubahan dan mem-push-nya ke GitHub, sesuai checklist yang ada.
-
+</details>
 
 <details>
   <summary>Tugas 5</summary>
@@ -246,6 +246,7 @@ Products: Mengarah ke proucts.html.
 
 ### 9. Push Github dan PWS
 Setelah selesai dengan pengembangan dan penambahan fitur, saya melakukan push ke repository GitHub dan melakukan deploy ke PWS untuk memastikan aplikasi dapat diakses secara online.
+</details>
 
 <details>
   <summary>Tugas 6</summary>
