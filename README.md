@@ -54,12 +54,9 @@ Menurut saya, framework Django dipilih karena full-stack framework-nya yang leng
 
 ## Mengapa Model pada Django Disebut sebagai ORM?
 Model di Django disebut ORM (Object-Relational Mapping) karena memungkinkan pengembang bekerja dengan data sebagai objek Python tanpa menulis SQL secara langsung, sehingga memudahkan interaksi dengan basis data.
-<details>
 
 <details>
   <summary>Tugas 3</summary>
-
-# TUGAS 3
 
 ### 1. Mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 Data delivery itu penting banget dalam platform karena memungkinkan kita mengirimkan data dari satu bagian sistem ke bagian lainnya, misalnya dari client ke server. Dengan ini memungkinkan aplikasi kita untuk dinamis dan interaktif, di mana data bisa dikirim, disimpan, dan diambil sesuai kebutuhan.
@@ -102,12 +99,9 @@ Method `is_valid()` berfungsi untuk memvalidasi input dari form sebelum data dis
 ![Postman XML](screenshoot/Screenshot%202024-09-17%20224148.png)
 ![Postman XML ID](screenshoot/Screenshot%202024-09-17%20224721.png)
 
-<details>
 
 <details>
   <summary>Tugas 4 </summary>
-
-# Tugas 4 - Django Authentication, Authorization, dan Manajemen Item
 
 ## 1. Perbedaan antara `HttpResponseRedirect()` dan `redirect()`
 
@@ -169,12 +163,9 @@ Namun, tidak semua cookies aman. Cookies dapat disalahgunakan oleh serangan sepe
 ### 5. Menyimpan dan Push ke GitHub
 - Setelah memastikan fitur berjalan dengan baik, saya melakukan commit terhadap perubahan dan mem-push-nya ke GitHub, sesuai checklist yang ada.
 
-<details>
 
 <details>
   <summary>Tugas 5</summary>
-
-# Tugas 5
 
 ## 1. Urutan Prioritas CSS Selector
 Ketika terdapat beberapa CSS selector yang diterapkan pada elemen HTML yang sama, browser menggunakan **specificity** untuk menentukan gaya yang diterapkan. Urutan prioritasnya adalah:
@@ -257,11 +248,8 @@ Products: Mengarah ke proucts.html.
 Setelah selesai dengan pengembangan dan penambahan fitur, saya melakukan push ke repository GitHub dan melakukan deploy ke PWS untuk memastikan aplikasi dapat diakses secara online.
 
 <details>
-
-<details>
   <summary>Tugas 6</summary>
 
-# Tugas 6
 ### 1. Manfaat JavaScript
 - **Interaktivitas**: Dengan JavaScript, elemen seperti tombol, form, atau konten dapat diubah secara dinamis tanpa memuat ulang halaman, sehingga meningkatkan pengalaman pengguna (user experience).
 - **Kecepatan**: JavaScript dijalankan langsung di browser pengguna, yang berarti tidak ada waktu tunda komunikasi dengan server.
