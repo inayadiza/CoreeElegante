@@ -6,7 +6,7 @@ Ini adalah repository untuk **Corée Élégante**, sebuah aplikasi e-commerce ya
   <summary>Tugas 2</summary>
 
 ## Deskripsi Proyek
-Aplikasi **Corée Élégante** adalah platform e-commerce yang menjual berbagai macam pakaian bergaya Korea yang lucu dan trendi. Pengguna dapat menjelajahi koleksi fashion, melihat detail produk seperti:
+Aplikasi **Corée Élégante** adalah platform e-commerce yang menjual berbagai macam pakaian yang elegan serta trendi. Pengguna dapat menjelajahi koleksi fashion, melihat detail produk seperti:
 - **Nama Produk**
 - **Harga**
 - **Deskripsi**
